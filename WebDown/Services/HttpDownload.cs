@@ -54,9 +54,21 @@ public class HttpDownload
         }
         catch (Exception)
         {
-            _logger.LogError("无法获得文件Md5");
+            _logger.LogError("文件Md5值不存在");
         }
 
         return "";
+    }
+
+    /// <summary>
+    /// 这里得到的文件名是url最后一部分，没有去获得ContentHeader中的文件名
+    /// </summary>
+    /// <param name="url"></param>
+    /// <returns></returns>
+    public string GetDownFilename(string url)
+    {
+        string fileName = Path.GetFileName(url);
+
+        return fileName;
     }
 }

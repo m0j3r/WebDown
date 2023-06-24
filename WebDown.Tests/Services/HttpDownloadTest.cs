@@ -81,4 +81,34 @@ public class WebDown_Test
 
         Assert.Equal(string.Empty, result);
     }
+
+    [Theory]
+    [InlineData("https://dldir1.qq.com/qqfile/qq/PCQQ9.7.9/QQ9.7.9.29065.exe")]
+    public void GetDownFilename_InUrl_OutName(string url)
+    {
+        HttpClient httpClient = new();
+
+        var logger = LoggerHelper.LoggerMock<HttpDownload>();
+
+        HttpDownload webDown = new(httpClient, logger.Object);
+
+        var result = webDown.GetDownFilename(url);
+
+        Assert.Equal("QQ9.7.9.29065.exe", result);
+    }
+
+    [Theory]
+    [InlineData("")]
+    public void GetDownFilename_In_OutError(string url)
+    {
+        HttpClient httpClient = new();
+
+        var logger = LoggerHelper.LoggerMock<HttpDownload>();
+
+        HttpDownload webDown = new(httpClient, logger.Object);
+
+        var result = webDown.GetDownFilename(url);
+
+        Assert.Equal(string.Empty, result);
+    }
 }
