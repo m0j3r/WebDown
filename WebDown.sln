@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDown", "WebDown\WebDown.csproj", "{52833751-7A58-45AA-8A28-8AE50B8EFFAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDown.Tests", "WebDown.Tests\WebDown.Tests.csproj", "{5EE123EC-B0A3-436F-B2C4-BA2EBAEE95FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{52833751-7A58-45AA-8A28-8AE50B8EFFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52833751-7A58-45AA-8A28-8AE50B8EFFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52833751-7A58-45AA-8A28-8AE50B8EFFAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE123EC-B0A3-436F-B2C4-BA2EBAEE95FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE123EC-B0A3-436F-B2C4-BA2EBAEE95FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE123EC-B0A3-436F-B2C4-BA2EBAEE95FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE123EC-B0A3-436F-B2C4-BA2EBAEE95FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
