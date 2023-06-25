@@ -71,4 +71,33 @@ public class HttpDownload
 
         return fileName;
     }
+
+    public async Task<bool> DownLoad(string url, string filePath)
+    {
+        bool sign = true;
+        filePath += GetDownFilename(url);
+        try
+        {
+            using Stream netStream = await _httpClient.GetStreamAsync(url);
+            using FileStream fileStream = File.OpenWrite(filePath);
+            await netStream.CopyToAsync(fileStream);
+        }
+        catch (IOException)
+        {
+            //这里的异常捕获并不完善，请结合实际操作而定
+            sign = false;
+            _logger.LogError("Downloader.DownloadFile：请检查文件名是否重复！");
+        }
+
+        return sign;
+    }
+
+    public string OutFilePath(string url)
+    {
+        var res = "/home/Data/";
+        res += GetDownFilename(url);
+
+        return res;
+    }
+
 }

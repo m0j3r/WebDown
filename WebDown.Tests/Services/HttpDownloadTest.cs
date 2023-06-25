@@ -1,11 +1,11 @@
 namespace HttpDownload.UnitTests.Services;
 
-using System.Threading.Tasks;
 using HttpDownload.Services;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-public class WebDown_Test
+public class HttpDown_Test
 {
     [Theory]
     [InlineData("https://dldir1.qq.com/qqfile/qq/PCQQ9.7.1/QQ9.7.1.28940.exe")]
@@ -99,7 +99,7 @@ public class WebDown_Test
 
     [Theory]
     [InlineData("")]
-    public void GetDownFilename_In_OutError(string url)
+    public void GetDownFilename_InEmpty_OutEmpty(string url)
     {
         HttpClient httpClient = new();
 
@@ -111,4 +111,35 @@ public class WebDown_Test
 
         Assert.Equal(string.Empty, result);
     }
+
+    [Theory]
+    [InlineData("https://dldir1.qq.com/qqfile/qq/PCQQ9.7.9/QQ9.7.9.29065.exe")]
+    public void OutFilePath_InUrl_OutFilePath(string url)
+    {
+        HttpClient httpClient = new();
+
+        var logger = LoggerHelper.LoggerMock<HttpDownload>();
+
+        HttpDownload webDown = new(httpClient, logger.Object);
+
+        var result = webDown.OutFilePath(url);
+
+        Assert.Equal("/home/Data/QQ9.7.9.29065.exe", result);
+    }
+
+    [Theory]
+    [InlineData("https://dldir1.qq.com/qqfile/qq/PCQQ9.7.9/QQ9.7.9.29065.exe")]
+    public async Task GetDownload_InUrl_OutTrue(string url)
+    {
+        HttpClient httpClient = new();
+
+        var logger = LoggerHelper.LoggerMock<HttpDownload>();
+
+        HttpDownload webDown = new(httpClient, logger.Object);
+
+        var result = await webDown.DownLoad(url, "/home/Data/");
+
+        Assert.True(result);
+    }
+
 }
